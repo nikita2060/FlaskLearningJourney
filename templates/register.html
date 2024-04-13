@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecommerce Website Forms</title>
+
+<link rel="stylesheet" href="style.css">
+<style>
+    /* Add CSS for hover and onclick color changing */
+    input[type="submit"]:hover {
+        background-color: #2c3e50;
+        color: white;
+    }
+
+    input[type="submit"]:active {
+        background-color: #2a86e1;
+    }
+</style>
+</head>
+<body>
+
+<!--Registration Form-->
+ <form id="registrationForm" onsubmit="return validateRegistrationForm()">
+    <h2>Registration Form</h2>
+    <input type="text" id="fullName" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <br><label for="gender">Gender:</label>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">Female</label><br><br>
+    <label for="degree">Degree:</label>
+    <select id="degree" required>
+        <option value="">Select Degree</option>
+        <option value="bachelor">Bachelor</option>
+        <option value="master">Master</option>
+        <option value="phd">PhD</option>
+    </select><br>
+    <label for="country">Country:</label>
+    <select id="country" required>
+        <option value="">Select Country</option>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+        <option value="canada">Canada</option>
+    </select>
+    <input type="submit" value="Register"  >
+
+</form>
+
+<!-- Login Form -->
+<form id="loginForm" onsubmit="return validateLoginForm()">
+    <h2>Login Form</h2>
+    <input type="email" id="loginEmail" placeholder="Email" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+    <input type="submit" value="Login">
+</form>
+
+<!-- Feedback Form -->
+<form id="feedbackForm" onsubmit="return validateFeedbackForm()">
+    <h2>Feedback Form</h2>
+    <textarea id="feedback" placeholder="Enter your feedback here..." required></textarea>
+    <input type="submit" value="Submit Feedback">
+</form>
+
+<script>
+    //Validation for Registration Form
+    function validateRegistrationForm() {
+        var fullName = document.getElementById("fullName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var gender = document.querySelector('input[name="gender"]:checked');
+        var degree = document.getElementById("degree").value;
+        var country = document.getElementById("country").value;
+
+    console.log("Full Name:", fullName);
+    console.log("Email:", email);
+    console.log("Password:", password);
+
+    if (!fullName) {
+        alert("Please enter your full name.");
+        return false;
+    }
+
+    if (!email) {
+        alert("Please enter your email.");
+        return false;
+    }
+
+    if (!password) {
+        alert("Please enter your password.");
+        return false;
+    }
+    // Check if password is at least 8 characters long
+    if (password.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return false;
+    }
+
+    // Check if password contains at least one uppercase letter
+    if (!/[A-Z]/.test(password)) {
+        alert("Password must contain at least one uppercase letter.");
+        return false;
+    }
+
+    // Check if password contains at least one lowercase letter
+    if (!/[a-z]/.test(password)) {
+        alert("Password must contain at least one lowercase letter.");
+        return false;
+    }
+
+    // Check if password contains at least one digit
+    if (!/\d/.test(password)) {
+        alert("Password must contain at least one digit.");
+        return false;
+    }
+
+    // Check if password contains at least one special character
+    if (!/[^A-Za-z0-9]/.test(password)) {
+        alert("Password must contain at least one special character.");
+        return false;
+    }
+
+    if (!gender) {
+        alert("Please select your gender.");
+        return false;
+    }
+
+    if (!degree) {
+        alert("Please select your degree.");
+        return false;
+    }
+
+    if (!country) {
+        alert("Please select your country.");
+        return false;
+    }
+    console.log("Validation for Registration Form completed successfully.");
+
+
+        return true;
+    }
+
+    // Validation for Login Form
+    function validateLoginForm() {
+        var email = document.getElementById("loginEmail").value;
+        var password = document.getElementById("loginPassword").value;
+
+        if (!email || !password) {
+            alert("Please enter your email and password.");
+            return false;
+        }
+        return true;
+    }
+
+    // Validation for Feedback Form
+    function validateFeedbackForm() {
+        var feedback = document.getElementById("feedback").value;
+
+        if (!feedback) {
+            alert("Please enter your feedback.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
